@@ -3,6 +3,7 @@ package com.rudra;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -30,21 +31,23 @@ public class MainMaven {
     }
 
     //This method is created to get the time stamp
-    @Test
     public static String dateTimeStamp() {
         return new SimpleDateFormat("yyyyMMddHHmmss").format(new java.util.Date()); // Storing current date and time as given pattern
     }
 
     //This method will perform click action in given element
-    @Test
     public static void clickButton(By by) {
         driver.findElement(by).click();   // Uniquely identify the element within the web page and perform given action
     }
 
     //This method will give user data to the specific field
-    @Test
     public static void sendUserData(By by, String text) {
         driver.findElement(by).sendKeys(text); //Uniquely identify the element within the web page and perform given action
+    }
+
+    public static void selectListByValue(By by, String value){
+        Select select = new Select(driver.findElement(by));
+        select.selectByValue(value);
     }
 
     //This method will get the text value from the element
@@ -60,8 +63,10 @@ public class MainMaven {
         clickButton(By.id("gender-male")); // It identifies the unique element by id and performs click action
         sendUserData(By.id("FirstName"), "Test");  // It identifies the unique element by id and fill in FirstName field with "Test"
         sendUserData(By.id("LastName"), "TestAuto"); // It identifies the unique element by id and fill in LastName field with "TestAuto"
-        sendUserData(By.xpath("//select[@name='DateOfBirthDay']"), "12"); // Identifies the unique element by xPath and selects Date of birth Day by "12"
-        sendUserData(By.xpath("//select[@name='DateOfBirthMonth']"), "August");  // Identifies the unique element by xPath and selects Date of birth Month by "August"
+        selectListByValue(By.name("DateOfBirthDay"), "13"); // Identifies the unique element by xPath and selects Date of birth Day by "12"
+        Select selectMonth = new Select(driver.findElement(By.xpath("//select[@name='DateOfBirthMonth']")));
+        selectMonth.selectByVisibleText("August");
+        // sendUserData(By.xpath("//select[@name='DateOfBirthMonth']"), "August");  // Identifies the unique element by xPath and selects Date of birth Month by "August"
         sendUserData(By.xpath("//select[@name='DateOfBirthYear']"), "1990"); // Identifies the unique element by xPath and selects Date of birth Year by "1990"
         sendUserData(By.id("Email"), "testmaven" + dateTimeStamp() + "@maven.com");    // Identifies unique element by id and fill it with given user inputs - timeStamp is used in between so everytime we test it will be unique and accepts the data
         sendUserData(By.name("Company"), "ABC Company"); // Identifies unique element by name and fill in Company field with user data "ABC Company"
