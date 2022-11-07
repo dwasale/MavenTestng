@@ -50,6 +50,17 @@ public class MainMaven {
         select.selectByValue(value);
     }
 
+    public static void selectListByVisibleText(By by, String value){
+        Select select = new Select(driver.findElement(by));
+        select.selectByVisibleText(value);
+    }
+
+    public static void selectListByIndex(By by, int value){
+        Select select = new Select(driver.findElement(by));
+        select.selectByIndex(value);
+    }
+
+
     //This method will get the text value from the element
     @Test
     public static String getText(By by) {
