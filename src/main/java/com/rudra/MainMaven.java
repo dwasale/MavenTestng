@@ -75,4 +75,15 @@ public class MainMaven {
 
     }
 
+    @Test
+    public static void toPutCommentsOnMiddleOneOfNewsSection(){
+        clickButton(By.xpath("//div[@class='news-item'][2]/div[3]")); //It identifies unique element by xPath and clicks the button
+        sendUserData(By.name("AddNewComment.CommentTitle"),"Very Very Good"); // Identifies unique element by name and insert "Very Good" in that field
+        sendUserData(By.name("AddNewComment.CommentText"), "One of the demo web " +
+                "page to work on for testing. " +
+                "The contain are very simple and easy to navigate.");//Identifies unique element by name and insert user input data passed in sendKey() method in that field
+        clickButton(By.name("add-comment")); // It will click the button which has unique locator passed in findElement by name
+    }
+}
+
 }
