@@ -83,7 +83,14 @@ public class MainMaven {
                 "page to work on for testing. " +
                 "The contain are very simple and easy to navigate.");//Identifies unique element by name and insert user input data passed in sendKey() method in that field
         clickButton(By.name("add-comment")); // It will click the button which has unique locator passed in findElement by name
+        System.out.println(getText(By.className("result"))); // Prints the message after successful comment on the console
     }
-}
+
+    @Test
+    public static void toGetAllTheTextFromDesktopsPageUnderComputer(){
+        clickButton(By.linkText("Computers")); // Navigates through given unique locator and performs click action
+        clickButton(By.linkText("Desktops")); // Navigates through given unique locator and performs click action
+        System.out.println(getText(By.className("center-2"))); // Prints all the texts on console from desktop page
+    }
 
 }
