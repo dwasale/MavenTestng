@@ -75,6 +75,7 @@ public class MainMaven {
 
     }
 
+    //This is another test method to send some comments
     @Test
     public static void toPutCommentsOnMiddleOneOfNewsSection(){
         clickButton(By.xpath("//div[@class='news-item'][2]/div[3]")); //It identifies unique element by xPath and clicks the button
@@ -86,6 +87,7 @@ public class MainMaven {
         System.out.println(getText(By.className("result"))); // Prints the message after successful comment on the console
     }
 
+    //This is another test method to get all the text from desktop page
     @Test
     public static void toGetAllTheTextFromDesktopsPageUnderComputer(){
         clickButton(By.linkText("Computers")); // Navigates through given unique locator and performs click action
@@ -93,4 +95,17 @@ public class MainMaven {
         System.out.println(getText(By.className("center-2"))); // Prints all the texts on console from desktop page
     }
 
+    //This test method send email about macbook pro to friend
+    @Test
+    public static void toEmailAFriendAboutNewAppleMacBookPro(){
+        clickButton(By.linkText("Apple MacBook Pro 13-inch")); //Uniquely identify the element within the web page and perform given action click
+        clickButton(By.className("email-a-friend")); //Uniquely identify the element within the web page and perform given action click
+        sendUserData(By.className("friend-email"), "friendemail@email.com"); //Uniquely identify the element within the web page fill it with the given user data
+        sendUserData(By.className("your-email"), "myemail@email.com"); //Uniquely identify the element within the web page fill it with the given user data
+        sendUserData(By.name("PersonalMessage"), "This is one of the best laptop in the market " +
+                "with very high specs for day to day computing" +
+                ". I recommend to get the latest 2022 version of macBook air with M2 chip."); //Uniquely identify the element within the web page fill it with the given user data
+        clickButton(By.name("send-email")); //It will click the send email button
+        System.out.println(getText(By.xpath("//div[@class='message-error validation-summary-errors']"))); // It will print the given message either successful/unsuccessful
+    }
 }
